@@ -28,18 +28,19 @@ if streamlit.button('Desplegar la lista'):
   streamlit.dataframe(my_data_rows)
 #streamlit.stop()
 
-def  insert_row_snowflake(new_fruit):
+def  insert_row_snowflake(new_id, new_name,new_addr):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("INSERT INTO Clientes VALUES ('"+new_fruit+"')")
-    return "Thanks for adding " + new_fruit
+    my_cur.execute("INSERT INTO Clientes VALUES ("+new_id+",'"+new_name+"','"+new_addr+"')")
+    get_fruit_load_list()
+    return "Se agrego a " + new_name
     
 streamlit.header("Ingresar nuevo Cliente:")
-add_my_fruit = streamlit.text_input('Identificacion:','10')
-add_my_fruit = streamlit.text_input('Nombre Completo:','John Doe')
-add_my_fruit = streamlit.text_input('Dirección','Provincia/Distrito/Calle')
+add_id = streamlit.text_input('Identificacion:','10')
+add_name = streamlit.text_input('Nombre Completo:','John Doe')
+add_addr = streamlit.text_input('Dirección','Provincia/Distrito/Calle')
 if streamlit.button('Agregar nuevo cliente'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-  streamlit.text(insert_row_snowflake(add_my_fruit))
+  streamlit.text(insert_row_snowflake(add_id,add_name,add_addr))
 
 #streamlit.write('Thanks for adding',add_my_fruit)
 #my_cur.execute("INSERT INTO fruit_load_list VALUES ('from streamlit')")
