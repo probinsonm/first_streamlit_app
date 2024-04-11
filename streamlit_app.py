@@ -32,9 +32,12 @@ def  insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
     my_cur.execute("INSERT INTO Clientes VALUES ('"+new_fruit+"')")
     return "Thanks for adding " + new_fruit
-
-add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
-if streamlit.button('Add a Fruit to the List'):
+    
+streamlit.header("Ingresar nuevo Cliente:")
+add_my_fruit = streamlit.text_input('Identificacion:','10')
+add_my_fruit = streamlit.text_input('Nombre Completo:','John Doe')
+add_my_fruit = streamlit.text_input('Dirección','Provincia/Distrito/Calle')
+if streamlit.button('Agregar nuevo cliente'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   streamlit.text(insert_row_snowflake(add_my_fruit))
 
