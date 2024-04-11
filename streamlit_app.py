@@ -14,7 +14,6 @@ streamlit.text('📔 Módulo de Gestion de Clientes')
 #my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 #my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT * FROM fruit_load_list")
-
 #my_data_rows = my_cur.fetchall() 
 
 streamlit.header("Obtener la lista de clientes:")
@@ -26,7 +25,7 @@ def get_fruit_load_list():
 if streamlit.button('Get Fruit Load List'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
-  streamlit.dataframe(my_data_rows).columns =['ID', 'Nombre', 'Direccion']
+  streamlit.dataframe(my_data_rows, columns=['ID', 'Nombre', 'Direccion'])
 #streamlit.stop()
 
 def  insert_row_snowflake(new_fruit):
