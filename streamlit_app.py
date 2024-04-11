@@ -30,7 +30,7 @@ if streamlit.button('Desplegar la lista'):
 
 def  insert_row_snowflake(new_id, new_name,new_addr):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("INSERT INTO Clientes VALUES ('"+new_name+"','"+new_addr+"')")
+    my_cur.execute("INSERT INTO Cliente VALUES ("+new_id+",'"+new_name+"','"+new_addr+"')")
     get_fruit_load_list()
     return "Se agrego a " + new_name
     
